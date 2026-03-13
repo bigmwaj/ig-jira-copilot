@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: ca.espconsulting.igjiracopilot.route.UserStoryRefinementRouteTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.141 s -- in ca.espconsulting.igjiracopilot.route.UserStoryRefinementRouteTest

@@ -1,0 +1,4 @@
+ca/espconsulting/igjiracopilot/service/CopilotClientTest.class
+ca/espconsulting/igjiracopilot/service/JiraClientTest.class
+ca/espconsulting/igjiracopilot/service/PollingServiceTest.class
+ca/espconsulting/igjiracopilot/route/UserStoryRefinementRouteTest.class
