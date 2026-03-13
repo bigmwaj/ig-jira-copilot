@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: ig-jira-copilot
+
+# Apache Camel configuration
+camel:
+  springboot:
+    name: IgJiraCopilotContext
+    main-run-controller: true
+  # Disable JMX in lightweight deployments (optional)
+  # jmxEnabled: false
+
+# Application-specific properties
+app:
+  jira:
+    # Base URL of your Jira instance (Cloud: https://<tenant>.atlassian.net)
+    base-url: ${JIRA_BASE_URL:https://your-jira-instance.atlassian.net}
+    # Jira account username / email
+    username: ${JIRA_USERNAME:your-email@example.com}
+    # Jira API token (generated at https://id.atlassian.com/manage-profile/security/api-tokens)
+    api-token: ${JIRA_API_TOKEN:your-api-token}
+    # Default project key used when creating tasks
+    project-key: ${JIRA_PROJECT_KEY:PROJ}
+    # Custom field ID for "AI Exchange Tracking"
+    ai-exchange-tracking-field: ${JIRA_AI_TRACKING_FIELD:customfield_10100}
+    # Label applied to all AI-managed Jira items
+    ai-agent-label: AI-Agent
+
+  copilot:
+    # GitHub Copilot / OpenAI-compatible API base URL
+    api-url: ${COPILOT_API_URL:https://api.githubcopilot.com}
+    # Bearer token for Copilot API authentication
+    api-key: ${COPILOT_API_KEY:your-copilot-api-key}
+    # Model to use for completions
+    model: ${COPILOT_MODEL:gpt-4o}
+    # Maximum number of polling attempts before giving up
+    max-poll-attempts: ${COPILOT_MAX_POLL_ATTEMPTS:30}
+    # Interval between polling attempts (milliseconds)
+    poll-interval-ms: ${COPILOT_POLL_INTERVAL_MS:5000}
+
+  routes:
+    # How often the Camel timer routes scan Jira (milliseconds)
+    scan-interval-ms: ${ROUTE_SCAN_INTERVAL_MS:60000}
+
+# Logging
+logging:
+  level:
+    ca.espconsulting: INFO
+    org.apache.camel: INFO
+    org.springframework: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# Actuator endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,camel
+  endpoint:
+    health:
+      show-details: always
